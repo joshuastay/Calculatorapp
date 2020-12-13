@@ -8,13 +8,24 @@ namespace Calculatorapp
         {
             var interpreter = new Interpret();
 
-            Console.WriteLine("Enter a math problem: ");
+            while (true)
+            {
+                Console.WriteLine("Enter a math problem: ");
 
-            string input = Console.ReadLine();
+                string input = Console.ReadLine();
 
-            int solution = interpreter.Operate(Splitter.SplitOperation(input));
+                if (input == "quit")
+                {
+                    break;
+                }
 
-            Console.WriteLine(solution);
+                else
+                {
+                    int solution = interpreter.Operate(Splitter.SplitOperation(input));
+                    Console.WriteLine(solution);
+                }
+
+            }
         }
     }
 }

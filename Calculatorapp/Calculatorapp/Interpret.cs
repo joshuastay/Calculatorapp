@@ -7,32 +7,38 @@ namespace Calculatorapp
         private int valueA;
         private int valueB;
         private string operand;
+        private int operandIndex;
+        private string multiply = "*";
         public int Operate(string[] problem)
         {
-            valueA = Convert.ToInt32(problem[0]);
-            operand = problem[1];
-            valueB = Convert.ToInt32(problem[2]);
+            operandIndex = Array.FindIndex(problem, multiply);
+            
+            
+            
+            //valueA = Convert.ToInt32(problem[0]);
+            //operand = problem[1];
+            //valueB = Convert.ToInt32(problem[2]);
 
-            return OpCheck();
+            //return OpCheck();
         }
 
         public int OpCheck()
         {
             if (operand == "+")
             {
-                return valueA + valueB;
+                return Operation.Sum(valueA, valueB);
             }
             else if (operand == "-")
             {
-                return valueA - valueB;
+                return Operation.Difference(valueA, valueB);
             }
             else if (operand == "*")
             {
-                return valueA * valueB;
+                return Operation.Product(valueA, valueB);
             }
             else if (operand == "/")
             {
-                return valueA / valueB;
+                return Operation.Quotient(valueA, valueB);
             }
             else
             {
