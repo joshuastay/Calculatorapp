@@ -8,10 +8,13 @@ namespace Calculatorapp
         private int valueB;
         private string operand;
         private int operandIndex;
-        private string multiply = "*";
         public int Operate(string[] problem)
         {
-            operandIndex = Array.FindIndex(problem, multiply);
+            operandIndex = Array.IndexOf(problem, "*");
+
+            return operandIndex;
+
+
             
             
             
@@ -20,6 +23,30 @@ namespace Calculatorapp
             //valueB = Convert.ToInt32(problem[2]);
 
             //return OpCheck();
+        }
+        public int OperationOrder(string[] problem)
+        {
+            operandIndex = Array.IndexOf(problem, "*");
+
+            if (operandIndex < 0)
+            {
+                operandIndex = Array.IndexOf(problem, "/");
+
+                if (operandIndex < 0)
+                {
+                    operandIndex = Array.IndexOf(problem, "+");
+
+                    if (operandIndex < 0)
+                    {
+                        operandIndex = Array.IndexOf(problem, "-");
+                        
+                        if (operandIndex < 0)
+                        {
+                            return solution;
+                        }
+                    }
+                }
+            }
         }
 
         public int OpCheck()
