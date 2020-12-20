@@ -8,38 +8,36 @@ namespace Calculatorapp
         private int valueB;
         private string operand;
         private int operandIndex;
+        private int solution;
+        private string[] tempProblem = new string[3];
+        private bool multiplyCheck;
+        private bool divideCheck;
+        private bool addCheck;
+        private bool subtractCheck;
         public int Operate(string[] problem)
         {
-            operandIndex = Array.IndexOf(problem, "*");
+            valueA = Convert.ToInt32(problem[0]);
+            operand = problem[1];
+            valueB = Convert.ToInt32(problem[2]);
 
-            return operandIndex;
-
-
-            
-            
-            
-            //valueA = Convert.ToInt32(problem[0]);
-            //operand = problem[1];
-            //valueB = Convert.ToInt32(problem[2]);
-
-            //return OpCheck();
+            return OpCheck();
         }
         public int OperationOrder(string[] problem)
         {
-            operandIndex = Array.IndexOf(problem, "*");
+            multiplyCheck = finderIndexer(problem, "*");
 
-            if (operandIndex < 0)
+            if (!multiplyCheck)
             {
-                operandIndex = Array.IndexOf(problem, "/");
+                divideCheck = finderIndexer(problem, "/");
 
-                if (operandIndex < 0)
+                if (!divideCheck)
                 {
-                    operandIndex = Array.IndexOf(problem, "+");
+                    addCheck = finderIndexer(problem, "+");
 
-                    if (operandIndex < 0)
+                    if (!addCheck)
                     {
-                        operandIndex = Array.IndexOf(problem, "-");
-                        
+                        subtractCheck = finderIndexer(problem, "-");
+
                         if (operandIndex < 0)
                         {
                             return solution;
@@ -47,8 +45,33 @@ namespace Calculatorapp
                     }
                 }
             }
+            return Operate(tempProblem);
         }
+        public bool finderIndexer(string[] problem, string item)
+        {
+            operandIndex = Array.IndexOf(problem, item);
 
+            if (operandIndex < 0)
+            {
+                return false;
+            }
+            else
+            {
+                tempProblem[0] = problem[operandIndex - 1];
+                tempProblem[1] = problem[operandIndex];
+                tempProblem[2] = problem[operandIndex + 1];
+
+                return true;
+            }
+            
+        }
+        public string[] OperationMerge(string[] problem)
+        {
+            foreach (string value in problem)
+            {
+
+            }
+        }
         public int OpCheck()
         {
             if (operand == "+")

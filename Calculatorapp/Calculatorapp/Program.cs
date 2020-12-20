@@ -21,7 +21,7 @@ namespace Calculatorapp
 
                 else
                 {
-                    int solution = interpreter.Operate(Splitter.SplitOperation(input));
+                    int solution = interpreter.OperationOrder(Splitter.SplitOperation(input));
                     Console.WriteLine(solution);
                 }
 
