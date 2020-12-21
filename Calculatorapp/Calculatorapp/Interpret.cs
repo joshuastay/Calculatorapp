@@ -7,21 +7,25 @@ namespace Calculatorapp
         private int valueA;
         private int valueB;
         private string operand;
-        private int operandIndex;
+        public int operandIndex;
         private int solution;
         private string[] tempProblem = new string[3];
         private bool multiplyCheck;
         private bool divideCheck;
         private bool addCheck;
         private bool subtractCheck;
+
         public int Operate(string[] problem)
         {
             valueA = Convert.ToInt32(problem[0]);
             operand = problem[1];
             valueB = Convert.ToInt32(problem[2]);
 
-            return OpCheck();
+            solution = OpCheck();
+
+            return solution;
         }
+
         public int OperationOrder(string[] problem)
         {
             multiplyCheck = finderIndexer(problem, "*");
@@ -47,6 +51,7 @@ namespace Calculatorapp
             }
             return Operate(tempProblem);
         }
+
         public bool finderIndexer(string[] problem, string item)
         {
             operandIndex = Array.IndexOf(problem, item);
@@ -65,13 +70,7 @@ namespace Calculatorapp
             }
             
         }
-        public string[] OperationMerge(string[] problem)
-        {
-            foreach (string value in problem)
-            {
 
-            }
-        }
         public int OpCheck()
         {
             if (operand == "+")

@@ -6,7 +6,8 @@ namespace Calculatorapp
     {
         static void Main(string[] args)
         {
-            var interpreter = new Interpret();
+            // var interpreter = new Interpret();
+            var calculator = new CalculateOOO();
 
             while (true)
             {
@@ -21,7 +22,8 @@ namespace Calculatorapp
 
                 else
                 {
-                    int solution = interpreter.OperationOrder(Splitter.SplitOperation(input));
+                    int solution = calculator.Calculation(Splitter.SplitOperation(input));
+                    // int solution = interpreter.OperationOrder(Splitter.SplitOperation(input));
                     Console.WriteLine(solution);
                 }
 
